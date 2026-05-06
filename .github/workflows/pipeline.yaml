@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-scan-push:
-    runs-on: rt501p100
+    runs-on: self-hosted
 
     steps:
     - name: Checkout
