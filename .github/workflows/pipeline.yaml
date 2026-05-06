@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-scan-push:
-    runs-on: self-hosted
+    runs-on: rt501p100
 
     steps:
     - name: Checkout
@@ -24,4 +24,3 @@ jobs:
 
     - name: Push image
       run: docker push 10.6.0.190:80/local/website-jacky:${{ github.sha }}
-      
