@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: website-jacky
 spec:
   selector:
-    app: nginx
+    app: website-jacky
   ports:
   - port: 80
     targetPort: 80
