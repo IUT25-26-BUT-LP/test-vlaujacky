@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-scan-push:
+    runs-on: debian-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Build image
+      run: docker build -t 10.6.0.190:80/local/website-jacky:${{ github.sha }} .
+
+    - name: Scan with Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 10.6.0.190:80/local/website-jacky:${{ github.sha }}
+        exit-code: '1'
+        severity: 'CRITICAL,HIGH'
+
+    - name: Push image
+      run: docker push 10.6.0.190:80/local/website-jacky:${{ github.sha }}
