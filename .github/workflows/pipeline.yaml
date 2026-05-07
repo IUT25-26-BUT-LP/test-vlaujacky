@@ -6,14 +6,14 @@ on:
 
 jobs:
   build-scan-push:
-    runs-on: self-hosted
+    runs-on: rt510p
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
 
     - name: Build image
-      run: docker build -t 10.6.0.190:80/local/website-jacky:${{ github.sha }} .
+      run: docker build -t 10.6.0.190:80/local/website-jacky:${{ github.sha }} -f ./_work/test-vlaujacky/test-vlaujacky/app_python/Dockerfile
 
     - name: Scan with Trivy
       uses: aquasecurity/trivy-action@master
